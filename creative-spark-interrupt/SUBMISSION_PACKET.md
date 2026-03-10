@@ -3,8 +3,8 @@
 Use this file as the final bundle cover page before exporting to PDF.
 
 ## Fill These In Before Submission
-- Live deployed link: ______________________________
-- GitHub repository: ______________________________
+- Live deployed link: https://ccebreros27-svg.github.io/reusable-studio-engine/creative-spark-interrupt/
+- GitHub repository: https://github.com/ccebreros27-svg/reusable-studio-engine
 - Screen recording link or filename: ______________________________
 - Date submitted: ______________________________
 

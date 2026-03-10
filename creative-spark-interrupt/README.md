@@ -7,8 +7,9 @@ A mechanics-first prototype for addiction interruption that converts urges into 
 - README architecture notes: complete
 - Recording plan: included below
 - PDF bundle template: see `SUBMISSION_PACKET.md`
-- Live deployment link: still needs to be filled in after you publish
+- Live deployment link: https://ccebreros27-svg.github.io/reusable-studio-engine/creative-spark-interrupt/
 - Screen recording file: still needs to be recorded locally
+- GitHub repository: https://github.com/ccebreros27-svg/reusable-studio-engine
 
 ## Tool Intent Statement
 When a user feels an urge (of any type), this tool creates a **visible choice point** and redirects energy into a 3-minute creative task before the user acts impulsively.
@@ -136,6 +137,14 @@ This project is static HTML/CSS/JS. No build step is required.
 Example final URL shape:
 
 `https://your-username.github.io/reusable-studio-engine/creative-spark-interrupt/`
+
+Current repo URL:
+
+`https://github.com/ccebreros27-svg/reusable-studio-engine`
+
+Expected live URL:
+
+`https://ccebreros27-svg.github.io/reusable-studio-engine/creative-spark-interrupt/`
 
 ## Screen Recording Plan (under 2 minutes)
 - 0:00–0:15 — Show the landing screen and the system map.

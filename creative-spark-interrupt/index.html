@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creative Spark Interrupt</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="hero">
+        <p class="kicker">Mechanics Build</p>
+        <h1>Creative Spark Interrupt</h1>
+        <p class="subhead">
+          Interrupt an urge with one timed creative action before acting on impulse.
+        </p>
+        <p class="subhead subhead-soft">Input → rules engine → choice point → reflection.</p>
+      </header>
+
+      <section class="card system-map" aria-live="polite">
+        <h2>System Map</h2>
+        <div class="system-grid">
+          <article class="system-node">
+            <h3>Input</h3>
+            <p>Urge type, intensity, energy, emotion, and a short mission response.</p>
+          </article>
+          <article class="system-node">
+            <h3>Processing</h3>
+            <p id="logicTrace">Waiting for check-in. No rule has fired yet.</p>
+          </article>
+          <article class="system-node">
+            <h3>Output</h3>
+            <p id="outputTrace">No choice point yet. The tool is idle.</p>
+          </article>
+        </div>
+        <div class="trace-list">
+          <p id="phaseTrace">Phase: idle</p>
+          <p id="storageTrace">Storage: local only · sessions saved: 0 · API calls: 0</p>
+          <p id="reductionTrace">Last recorded reduction: none yet.</p>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="checkin-heading">
+        <h2 id="checkin-heading">1) Quick Check-In</h2>
+        <form id="checkinForm" class="grid">
+          <label>
+            What urge are you feeling?
+            <select name="urgeType" id="urgeType" required>
+              <option value="">Select one...</option>
+              <option value="social-scroll">Doom scrolling / social media</option>
+              <option value="substance">Substance craving</option>
+              <option value="gambling">Gambling urge</option>
+              <option value="porn">Porn / compulsive sexual content</option>
+              <option value="gaming">Compulsive gaming</option>
+              <option value="shopping">Impulse shopping</option>
+              <option value="other">Other</option>
+            </select>
+          </label>
+
+          <label id="otherUrgeWrap" class="hidden" for="otherUrgeText">
+            Describe the urge
+            <input id="otherUrgeText" name="otherUrgeText" type="text" maxlength="60" placeholder="e.g. checking old messages repeatedly" />
+          </label>
+
+          <label>
+            Urge intensity (1–10)
+            <input type="range" name="intensity" min="1" max="10" value="5" />
+            <span id="intensityValue">5</span>
+          </label>
+
+          <label>
+            Current energy
+            <select name="energy" required>
+              <option value="">Select one...</option>
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+          </label>
+
+          <label>
+            What emotion is strongest right now?
+            <select name="emotion" required>
+              <option value="">Select one...</option>
+              <option value="stress">Stress</option>
+              <option value="boredom">Boredom</option>
+              <option value="anxiety">Anxiety</option>
+              <option value="lonely">Lonely</option>
+              <option value="anger">Anger</option>
+              <option value="sad">Sad</option>
+              <option value="restless">Restless</option>
+            </select>
+          </label>
+
+          <button type="submit" class="btn btn-primary">Check In</button>
+        </form>
+      </section>
+
+      <section id="choicePoint" class="card hidden" aria-live="polite">
+        <h2>2) Choice Point</h2>
+        <p id="choiceText"></p>
+        <div class="choice-actions">
+          <button id="startInterrupt" class="btn btn-success">Use the Creative Interrupt</button>
+          <button id="skipInterrupt" class="btn btn-ghost">Skip for now</button>
+        </div>
+      </section>
+
+      <section id="mission" class="card hidden" aria-live="polite">
+        <h2>3) Creative Mission</h2>
+        <p id="missionText"></p>
+        <p id="missionWhy" class="mission-why"></p>
+        <div class="timer-wrap">
+          <p class="timer-label">Time left</p>
+          <p id="timer" class="timer">03:00</p>
+          <div class="timer-bar" aria-hidden="true">
+            <div id="timerProgress" class="timer-progress"></div>
+          </div>
+        </div>
+        <button id="rerollMission" class="btn btn-ghost">Give me another mission</button>
+
+        <label class="mission-response-wrap" for="missionResponse">
+          Your mission response
+          <textarea
+            id="missionResponse"
+            name="missionResponse"
+            rows="4"
+            maxlength="400"
+            placeholder="Write, sketch in words, or script your mission here..."
+          ></textarea>
+        </label>
+        <div class="mission-response-actions">
+          <span id="missionResponseCount" class="char-count">0 / 400</span>
+          <button id="saveMissionResponse" class="btn btn-ghost" type="button">Save Mission Response</button>
+        </div>
+
+        <section class="coach-panel" aria-live="polite">
+          <h3>Logic Feedback</h3>
+          <p id="preparedResponse" class="prepared-response">The rules engine will show the next best move here.</p>
+          <blockquote id="inspirationQuote" class="inspiration-quote">
+            Logic trace: waiting for a check-in.
+          </blockquote>
+          <button id="newQuoteBtn" class="btn btn-ghost btn-small" type="button">Refresh Feedback</button>
+        </section>
+
+        <button id="finishMission" class="btn btn-primary hidden">I Finished the Mission</button>
+      </section>
+
+      <section id="reflection" class="card hidden" aria-live="polite">
+        <h2>4) Reflection</h2>
+        <form id="reflectionForm" class="grid">
+          <label>
+            Urge intensity now (1–10)
+            <input type="range" name="postIntensity" min="1" max="10" value="4" />
+            <span id="postIntensityValue">4</span>
+          </label>
+
+          <label>
+            One sentence: what shifted?
+            <textarea name="note" rows="3" maxlength="240" placeholder="I slowed down and my body calmed..." required></textarea>
+          </label>
+
+          <button type="submit" class="btn btn-success">Save Reflection</button>
+        </form>
+      </section>
+
+      <section class="card" aria-live="polite">
+        <div class="card-head">
+          <h2>Progress Snapshot</h2>
+          <button id="clearStats" class="btn btn-ghost btn-small" type="button">Clear Data</button>
+        </div>
+        <div id="stats" class="stats"></div>
+        <h3 class="recent-title">Recent Wins</h3>
+        <ul id="recentNotes" class="recent-notes"></ul>
+      </section>
+
+      <p id="appMessage" class="app-message hidden" role="status" aria-live="polite"></p>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

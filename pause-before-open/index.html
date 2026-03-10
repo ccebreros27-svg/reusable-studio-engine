@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pause Before Open</title>
+
+    <!-- Refined, quiet typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Ambient atmosphere layers -->
+    <div class="ambient-bg" aria-hidden="true"></div>
+    <div class="depth-layer" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <main class="artifact" role="main">
+      <header class="artifact-header">
+        <p class="eyebrow">Everyday Tools — Human Dignity</p>
+        <h1>Pause Before Open</h1>
+        <p class="lead">A quiet interruption for compulsive phone checking.</p>
+      </header>
+
+      <!-- Live interactive tool -->
+      <section class="tool-shell" aria-label="Pause Before Open interactive tool">
+        <div class="phone-orb" aria-hidden="true"></div>
+
+        <!-- State 1: Entry -->
+        <section class="state state-entry is-active" data-state="entry" aria-live="polite">
+          <p class="state-label">Phone impulse checkpoint</p>
+          <p class="microcopy">
+            This moment usually happens fast. Let it slow down once.
+          </p>
+          <button id="openBtn" class="btn btn-primary" type="button">Unlock Distracting App</button>
+        </section>
+
+        <!-- State 2: Pause -->
+        <section class="state state-pause" data-state="pause" aria-live="polite" aria-hidden="true">
+          <p class="state-label">Urge window</p>
+          <h2 id="promptHeading">What are you reaching for on your phone right now?</h2>
+
+          <p id="urgeLine" class="urge-line" aria-live="polite">Notice your hand, breath, and pace.</p>
+
+          <div class="chips" aria-label="Quick reason options">
+            <button class="chip" type="button" data-chip="I feel bored.">Bored</button>
+            <button class="chip" type="button" data-chip="I feel stressed and want to avoid work.">Stress</button>
+            <button class="chip" type="button" data-chip="I want a quick dopamine hit.">Dopamine hit</button>
+            <button class="chip" type="button" data-chip="I feel lonely and want connection.">Lonely</button>
+          </div>
+
+          <label class="visually-hidden" for="reasonInput">Type a short reason</label>
+          <textarea
+            id="reasonInput"
+            class="input"
+            rows="3"
+            maxlength="180"
+            placeholder="Type a short reason..."
+          ></textarea>
+
+          <div class="actions">
+            <button id="proceedAnywayBtn" class="btn btn-ghost" type="button">Proceed Anyway</button>
+            <button id="continueBtn" class="btn btn-primary continue" type="button" disabled aria-label="Hold to continue">
+              Hold to Continue
+            </button>
+          </div>
+
+          <p id="hint" class="hint">Continue appears after 10 seconds. Then hold for a moment to continue.</p>
+        </section>
+
+        <!-- State 3: Entered -->
+        <section class="state state-entered" data-state="entered" aria-live="polite" aria-hidden="true">
+          <p class="state-label">Transition complete</p>
+          <h2>You opened your phone intentionally.</h2>
+          <p class="microcopy">The goal is not perfect control. The goal is one conscious choice.</p>
+          <button id="resetBtn" class="btn btn-ghost" type="button">Lock & Reset</button>
+        </section>
+      </section>
+
+      <!-- Conceptual writing artifact -->
+      <details class="intent" id="intentStatement">
+        <summary>Tool Intent Statement</summary>
+
+        <div class="intent-content">
+          <article>
+            <h3>Core Function</h3>
+            <p>
+              This tool interrupts compulsive phone opening with a short pause ritual. It does not block access;
+              it inserts awareness between impulse and action.
+            </p>
+          </article>
+
+          <article>
+            <h3>Human Context</h3>
+            <p>
+              It enters the moment of reflex phone checking: boredom scrolling, stress avoidance, and repeat
+              unlock loops where the body moves before attention catches up.
+            </p>
+          </article>
+
+          <article>
+            <h3>Intended User</h3>
+            <p>
+              A student or young adult who unlocks their phone dozens of times a day and wants to reclaim choice
+              without being shamed or monitored.
+            </p>
+          </article>
+
+          <article>
+            <h3>Behavioral Thesis</h3>
+            <p>
+              Behavior change begins with interruption. Friction restores agency. Awareness precedes control.
+              A short pause can reduce autopilot and return ownership of attention.
+            </p>
+          </article>
+
+          <article>
+            <h3>Dignity Clause</h3>
+            <p>
+              No tracking, no permanent storage, no scores, no streaks, no surveillance framing. The interface
+              avoids urgency, guilt, and manipulative reward cues.
+            </p>
+          </article>
+
+          <article>
+            <h3>Refusal Clause</h3>
+            <p>
+              This will not become a productivity dashboard, app blocker, self-discipline engine, dopamine
+              replacement, or behavior monitoring system.
+            </p>
+          </article>
+
+          <article>
+            <h3>Atmospheric Tone</h3>
+            <p>
+              Calm, minimal, and slow—like stepping into quiet air before unlocking a screen. The pause should
+              feel like a breath, not a warning.
+            </p>
+          </article>
+        </div>
+      </details>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
